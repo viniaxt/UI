@@ -13,11 +13,38 @@ body{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  overflow: hidden;
 
   grid-template-areas: 
     "empty-row-1    empty-row-1 empty-row-1"
     "empty-column-1 astro       empty-column-3"
-    "empty-column-1 content        empty-column-3";
+    "empty-column-1 content     empty-column-3";
+}
+
+@keyframes astro-landing {
+  from {
+    opacity: 0;
+    transform: 
+      rotate(0deg)
+      scale3d(0.01, 0.01, 0.01) 
+      translate3d(0, -2000px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: 
+      rotate(360deg)
+      scale3d(1, 1, 1) 
+      translate3d(0, 0, 0);
+  }
+}
+
+@keyframes showing-content {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 #astro {
@@ -25,6 +52,8 @@ body{
   background-image: url("./assets/astro.png");
   background-repeat: no-repeat;
   background-position: center;
+
+  animation: astro-landing 2s;
 }
 
 #content {
@@ -35,6 +64,8 @@ body{
   text-align: center;
   justify-content: space-around;
   margin-bottom: 45px;
+
+  animation: astro-landing 2s, showing-content 2s;
 }
 
 #content #home-button {
